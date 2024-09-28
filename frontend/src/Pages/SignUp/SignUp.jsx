@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
-import "./SignUp.css";
-import { Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import "./signup.css"
 
 const SignUp = () => {
   const [formData, setFormData] = useState({});
@@ -34,9 +33,13 @@ const SignUp = () => {
     
     response = await response.json();
     console.log(response)
-    
-    navigate('/login')
 
+    if(response.success=="false"){
+      alert(response.message)
+    }else{
+      navigate('/login')
+    }
+    
   }
 
   const passHandler = (cp)=>{
@@ -52,7 +55,7 @@ const SignUp = () => {
     
     <div className="container">
       {console.log(formData)}
-     <div className="form-container">
+     <div className="signup-form-container glass">
       <div className="signup-form">
         <h2>Sign-Up</h2>
         <form onSubmit={submitHnadler}>
@@ -104,7 +107,7 @@ const SignUp = () => {
         {/* <Button type="submit" variant="contained" color="success">
           Sign Up
         </Button> */}
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="sbmit-btn">Sign Up</button>
         </form>
       </div>
       </div>

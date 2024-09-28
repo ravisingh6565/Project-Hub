@@ -1,24 +1,46 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import "./LogIn.css";
+import "./login.css"
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const LogIn = () => {
   const [loginData, setLoginData] = useState({});
-  const logInHandler = (e) => {
+  const navigate = useNavigate();
+
+  const logInHandler = async(e) => {
     e.preventDefault();
     const data = {
       email: e.target[0].value,
       password: e.target[2].value,
     };
     setLoginData(data);
+    let response = await fetch('http://localhost:5000/api/v1/login', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+    
+    response = await response.json();
+    console.log(response)
+
+    if(response.success=="false"){
+      alert(response.message);
+    }else{
+      localStorage.setItem('token', response.token);
+      navigate('/home')
+    }
+
   };
-  console.log(loginData);
+  // console.log(loginData);
+  
+  
   return (
     <div className="container">
       <div className="form-container">
-        <div className="signup-form">
+        <div className="login-form glass">
           <h2>Login</h2>
           <form onSubmit={logInHandler}>
             <TextField
@@ -36,9 +58,9 @@ const LogIn = () => {
               placeholder="Enter Password"
             />
 
-            <Link to="/forget-password">Forget Password</Link>
+            <Link to="/forget-password" className="linkto">Forget Password</Link>
 
-            <Link to="/signup">doesn't have account ? Sigh Up</Link>
+            <Link to="/signup" className="linkto">doesn't have account ? Sign Up</Link>
 
             <button type="submit">Login</button>
           </form>
