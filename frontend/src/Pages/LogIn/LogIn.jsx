@@ -30,7 +30,7 @@ const LogIn = () => {
       alert(response.message);
     }else{
       localStorage.setItem('token', response.token);
-      navigate('/home')
+      navigate('/')
     }
 
   };

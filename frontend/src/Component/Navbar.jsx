@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+
+
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState("Dashboard");
+  // const [navChanges,setNavChanges] = useState('Dashboard');
 
   // Function to toggle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
     setIsProfileDropdownOpen(!isProfileDropdownOpen); // Toggle profile dropdown at the same time
+  };
+
+  useEffect(() => {
+    console.log(`Current active nav item: ${activeLink}`);
+  }, [activeLink]);
+
+  const navChanges = (name) => {
+    setActiveLink(name); // Update active nav item
   };
 
   return (
@@ -33,7 +47,11 @@ export default function Navbar() {
                 stroke="currentColor"
                 aria-hidden="true"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
               </svg>
               {/* Icon when menu is open */}
               <svg
@@ -44,7 +62,11 @@ export default function Navbar() {
                 stroke="currentColor"
                 aria-hidden="true"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -62,31 +84,56 @@ export default function Navbar() {
             {/* Desktop Menu Links */}
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
-                <a
-                  href="#"
-                  className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                <Link
+                  to="/dashboard"
+                  className=
+                {`rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white ${
+                  activeLink === "Dashboard"
+                    ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                    : "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                }`}
                   aria-current="page"
+                  onClick={() => navChanges("Dashboard")}
                 >
                   Dashboard
-                </a>
-                <a
-                  href="#"
-                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                </Link>
+                
+                <Link
+                  to="/contact"
+                  className=
+                {`rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white ${
+                  activeLink === "Contact"
+                    ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                    : "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                }`}
+                  onClick={() => navChanges("Contact")}
                 >
-                  Team
-                </a>
-                <a
-                  href="#"
-                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                  Contact
+                </Link>
+                <Link
+                  to="/about"
+                  className=
+                {`rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white ${
+                  activeLink === "About"
+                    ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                    : "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                }`}
+                  onClick={() => navChanges("About")}
                 >
-                  Projects
-                </a>
-                <a
-                  href="#"
-                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                  About
+                </Link>
+                <Link
+                  to="#"
+                  className=
+                {`rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white ${
+                  activeLink === "Calendar"
+                    ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                    : "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                }`}
+                  onClick={() => navChanges("Calendar")}
                 >
                   Calendar
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -106,7 +153,11 @@ export default function Navbar() {
                 stroke="currentColor"
                 aria-hidden="true"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+                />
               </svg>
             </button>
 
@@ -131,13 +182,13 @@ export default function Navbar() {
               {/* Dropdown Menu */}
               {isProfileDropdownOpen && (
                 <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700">
+                  <a to="#" className="block px-4 py-2 text-sm text-gray-700">
                     Your Profile
                   </a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700">
+                  <a to="#" className="block px-4 py-2 text-sm text-gray-700">
                     Settings
                   </a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700">
+                  <a to="#" className="block px-4 py-2 text-sm text-gray-700">
                     Sign out
                   </a>
                 </div>
@@ -152,26 +203,26 @@ export default function Navbar() {
         <div className="sm:hidden" id="mobile-menu">
           <div className="space-y-1 px-2 pb-3 pt-2">
             <a
-              href="#"
+              to="#"
               className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
               aria-current="page"
             >
               Dashboard
             </a>
             <a
-              href="#"
+              to="#"
               className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >
               Team
             </a>
             <a
-              href="#"
+              to="#"
               className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >
               Projects
             </a>
             <a
-              href="#"
+              to="#"
               className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >
               Calendar

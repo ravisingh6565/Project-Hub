@@ -1,10 +1,19 @@
 import React, { useEffect } from 'react'
 import Navbar from '../../Component/Navbar'
 import './Home.css'
+import { useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
-
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if(!localStorage.getItem('token')){
+      console.log('hello world')
+      navigate('/login');
+    }else{
+      console.log('bye')
+    }
+  },[])
   return (
 
     <div>
