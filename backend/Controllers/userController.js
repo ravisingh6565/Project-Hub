@@ -71,12 +71,9 @@ const loginController = async (req,res)=>{
         })
     }
 }
-const addProjectController = (req,res)=>{
-    console.log('Creadential information');
-}
+
 
 module.exports = {
     signupController,
-    loginController,
-    addProjectController
+    loginController
 }

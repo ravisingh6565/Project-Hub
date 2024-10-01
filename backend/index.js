@@ -4,10 +4,12 @@ const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv').config();
 const userRoute = require('./Routes/userRoute');
+const projectRoute = require('./Routes/projectRoute')
 // dotenv.config();
 
 app.use(cors());
 app.use(express.json());
+app.use('/api/v1/',projectRoute);
 app.use('/api/v1/', userRoute);
 
 async function dbcon() {
