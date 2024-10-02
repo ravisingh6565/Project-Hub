@@ -1,6 +1,6 @@
 const Project= require("../Models/projectModel");
 
-const projectController = async (req,res)=>{
+const createProjectController = async (req,res)=>{
 
     try {
         const data = req.body;
@@ -23,4 +23,23 @@ const projectController = async (req,res)=>{
 
 }
 
-module.exports = projectController;
+const getAllProjectController = async (req,res)=>{
+    try {
+        const allProject = await Project.find();
+        console.log(allProject);
+
+        res.status(200).json({
+            success: true,
+            message: "Projects retrieved successfully",
+            projects: allProject
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: `Error: ${error.message}`
+        });
+        console.log(error.message);  
+    }
+}
+
+module.exports = {createProjectController, getAllProjectController};

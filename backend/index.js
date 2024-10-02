@@ -3,9 +3,19 @@ const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv').config();
+const cloudinary = require('cloudinary')
+
 const userRoute = require('./Routes/userRoute');
 const projectRoute = require('./Routes/projectRoute')
-// dotenv.config();
+
+//cloudinary configration 
+cloudinary.config({
+    cloud_name:process.env.CLOUD_NAME,
+    api_key :process.env.CLOUDINARY_API_KEY,
+    secret_key : process.env.CLOUDINARY_SECRET_KEY
+})
+
+
 
 app.use(cors());
 app.use(express.json());
