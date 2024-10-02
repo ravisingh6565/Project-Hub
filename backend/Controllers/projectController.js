@@ -1,10 +1,12 @@
 const Project= require("../Models/projectModel");
 
+
 const createProjectController = async (req,res)=>{
 
     try {
         const data = req.body;
-
+        const images = data.image
+           console.log("from the project controller",images)
         const project = new Project(data);
         await project.save();
 

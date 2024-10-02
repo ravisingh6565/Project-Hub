@@ -19,6 +19,10 @@ const projectSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    image:{
+        type:[String],
+        required: true
+    },
     links: {
         github: {
             type: String,
