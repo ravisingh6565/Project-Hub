@@ -10,7 +10,7 @@ cloudinary.config({
 
 const uploadImageToCloudinary = async (req, res, next) => {
     try {
-        const data =res.body
+        const data =req.body
         console.log("it is your img path ::",data.image)
         if (!req.body.image) {
             return res.status(400).json({
@@ -19,14 +19,14 @@ const uploadImageToCloudinary = async (req, res, next) => {
             });
         }
 
-        const imagePath = req.body.image;
+        const imagePath = data.image;
 
         const result = await cloudinary.uploader.upload(imagePath, {
             folder: 'projectHub_images'
         });
 
 
-        req.body.imageUrl = result.secure_url;
+        req.body.image = result.secure_url;
         next();
     } catch (error) {
         console.error(error.message);
