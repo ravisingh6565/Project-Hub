@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Navbar from '../../Component/Navbar'
+import Footer from '../../Component/Footer/Footer';
 import './Home.css'
 import { useNavigate } from 'react-router-dom';
 
@@ -26,6 +27,7 @@ const Home = () => {
       <h1 className="text-3xl font-bold underline">
       Hello world!
     </h1>
+      <Footer/>
     </div>
   )
 }

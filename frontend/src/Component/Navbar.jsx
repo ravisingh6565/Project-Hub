@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
+import logo1 from '../assets/logo1.png'
+import logo2 from '../assets/logo2.png'
 import { Link } from "react-router-dom";
+
 
 
 
@@ -76,9 +79,16 @@ export default function Navbar() {
             <div className="flex flex-shrink-0 items-center">
               <img
                 className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                alt="Your Company"
+                src={logo1}
+                alt="Project Hub"
               />
+              <img
+                className="h-8 w-auto"
+                src={logo2}
+                alt="Project Hub"
+              />
+              
+              {/* <Logo/> */}
             </div>
 
             {/* Desktop Menu Links */}
