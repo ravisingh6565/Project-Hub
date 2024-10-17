@@ -7,6 +7,7 @@ import CreateProject from './Pages/CreateProject/CreateProject'
 import DashBoard from "./Pages/DashBoard/DashBoard";
 import Contact from "./Pages/Contact/Contact";
 import About from "./Pages/About/About";
+import Profile from './Component/Profile'
 
 function App() {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ function App() {
       <Route path='/dashboard' element={<DashBoard/>}></Route>
       <Route path='/contact' element= {<Contact/>}></Route>
       <Route path='/about' element={<About/>}></Route>
+      <Route path ='/profile' element={<Profile/>}></Route>
      </Routes>
    
     </>

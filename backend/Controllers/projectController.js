@@ -29,7 +29,7 @@ const createProjectController = async (req,res)=>{
 const getAllProjectController = async (req,res)=>{
     try {
         const allProject = await Project.find();
-        console.log(allProject);
+        // console.log(allProject);
 
         res.status(200).json({
             success: true,

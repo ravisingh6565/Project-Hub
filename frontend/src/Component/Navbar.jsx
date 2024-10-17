@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Profile from "./Profile";
 import logo1 from '../assets/logo1.png'
 import logo2 from '../assets/logo2.png'
 import { Link } from "react-router-dom";
@@ -9,16 +10,27 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Dashboard");
   // const [navChanges,setNavChanges] = useState('Dashboard');
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    alert('You have logged out successfully!');
+    navigate('/');
+  };
+
+ 
   // Function to toggle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
     setIsProfileDropdownOpen(!isProfileDropdownOpen); // Toggle profile dropdown at the same time
   };
 
+const  handelProfile =()=>{
+
+}
   useEffect(() => {
     console.log(`Current active nav item: ${activeLink}`);
   }, [activeLink]);
@@ -191,18 +203,19 @@ export default function Navbar() {
 
               {/* Dropdown Menu */}
               {isProfileDropdownOpen && (
-                <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <a to="#" className="block px-4 py-2 text-sm text-gray-700">
-                    Your Profile
-                  </a>
-                  <a to="#" className="block px-4 py-2 text-sm text-gray-700">
-                    Settings
-                  </a>
-                  <a to="#" className="block px-4 py-2 text-sm text-gray-700">
-                    Sign out
-                  </a>
-                </div>
-              )}
+  <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+    <Link to='/profile' className="block px-4 py-2 text-sm text-gray-700">
+      Your Profile
+    </Link>
+    <Link to="#" className="block px-4 py-2 text-sm text-gray-700">
+      Settings
+    </Link>
+    <Link to="#" className="block px-4 py-2 text-sm text-gray-700" onClick={handleLogout}>
+      Sign out
+    </Link>
+  </div>
+)}
+
             </div>
           </div>
         </div>
